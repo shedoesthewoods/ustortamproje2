@@ -1,7 +1,6 @@
 function validateForm() {
-
   var kontrol=0;
-
+  var kelimesay=0;
   var name = document.querySelector("#name").value;
   if(name==""){
     document.getElementById("uyari1").innerHTML="*İsim sahasi boş olmamali!";
@@ -54,7 +53,7 @@ function validateForm() {
     document.getElementById("uyari5").innerHTML="";
   }
   var max30 = document.querySelector("#max30").value;
-  if(letters.test(max30)==false || max30.length>3 || max30==""){
+  if(letters.test(max30)==false || max30.length>30 || max30==""){
     if(max30==""){
       document.getElementById("uyari6").innerHTML="*Maksimum 30 karakterli kelime girilecek saha boş olmamalı!";
     }else
@@ -65,7 +64,12 @@ function validateForm() {
   }
   var uckelime = document.querySelector("#uckelime").value;
   kelimeler = uckelime.split(' ');
-  if(kelimeler.length!=3 || uckelime==""){
+  for(var i=0;i<kelimeler.length;i++){
+    if(kelimeler[i]!=""){
+      kelimesay++;
+    }
+  }
+  if(kelimesay!=3 || uckelime==""){
     if(uckelime==""){
       document.getElementById("uyari7").innerHTML="*3 kelimeden oluşan metin girilecek saha boş olmamalı!";
     }else
@@ -123,11 +127,8 @@ function validateForm() {
             document.getElementById("uyari12").innerHTML="";
         }
   }
-
   if(kontrol==1){
     return false;
   }
-
   return (true);
-
 }
